@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+}
+
+group = 'com.nickuc.login.blockunregistered'
+version = '1.0'
+
+tasks.build.dependsOn('shadowJar')
+
+repositories {
+    mavenCentral()
+    maven { url = uri('https://papermc.io/repo/repository/maven-public') }
+    maven { url = uri('https://repo.nickuc.com/maven2/') }
+}
+
+dependencies {
+    compileOnly 'com.nickuc.login:nlogin-api:9.3.0'
+    compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        expand 'pluginVersion': version
+        include 'plugin.yml'
+        include 'bungee.yml'
+    }
+}
+
+shadowJar {
+    archiveName("BlockUnregistered.jar")
+}
+
+compileJava {
+    options.encoding('UTF-8')
+
+    sourceCompatibility('1.8')
+    targetCompatibility('1.8')
+}

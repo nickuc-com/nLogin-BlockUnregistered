@@ -1,0 +1,4 @@
+name: BlockUnregistered
+version: ${pluginVersion}
+main: com.nickuc.login.extra.BlockUnregistered
+depend: [nLogin]
