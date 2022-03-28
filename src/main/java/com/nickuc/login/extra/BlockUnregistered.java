@@ -8,7 +8,6 @@
 package com.nickuc.login.extra;
 
 import com.nickuc.login.api.nLoginAPI;
-import com.nickuc.login.core.nLogin;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -36,8 +35,7 @@ public class BlockUnregistered extends JavaPlugin implements Listener {
     public void onAsyncPlayerPreLogin(AsyncPlayerPreLoginEvent e) {
         if (e.getLoginResult() == AsyncPlayerPreLoginEvent.Result.ALLOWED) {
             String name = e.getName();
-            nLoginAPI api = nLogin.getApi();
-            if (!api.isRegistered(name)) {
+            if (!nLoginAPI.getApi().isRegistered(name)) {
                 e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, MESSAGE);
             }
         }
